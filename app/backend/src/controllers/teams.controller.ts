@@ -8,7 +8,8 @@ export default class TeamController {
   }
 
   public static async findById(req: Request, res: Response) {
-    const team = await TeamService.findById(1);
+    const { params: { id } } = req;
+    const team = await TeamService.findById(+id);
     return res.status(200).json(team);
   }
 }
