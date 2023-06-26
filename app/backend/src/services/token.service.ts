@@ -15,6 +15,7 @@ export default class TokenService {
   }
 
   public static create(payload: IUser) {
-    return jwt.sign(payload, TokenService.jwtSecret);
+    const { id, username, role, email } = payload;
+    return jwt.sign({ id, username, role, email }, TokenService.jwtSecret);
   }
 }
