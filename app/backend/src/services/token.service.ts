@@ -18,4 +18,8 @@ export default class TokenService {
     const { id, username, role, email } = payload;
     return jwt.sign({ id, username, role, email }, TokenService.jwtSecret);
   }
+
+  public static decoded(tokenRaw: string) {
+    return jwt.decode(tokenRaw) as IUser;
+  }
 }
