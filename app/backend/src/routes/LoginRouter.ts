@@ -10,4 +10,9 @@ LoginRouter.post(
   LoginController.signin,
 );
 
+LoginRouter.get(
+  '/role',
+  LoginController.showRole,
+);
+
 export default LoginRouter;
