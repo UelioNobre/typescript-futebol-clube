@@ -11,9 +11,7 @@ export default class UserService {
 
     try {
       await TokenService.verifyPassword(password, user.password);
-      const { id, username, role } = user;
-
-      return { id, username, role, email };
+      return user;
     } catch (error) {
       throw new AuthErrorException('Invalid email or password');
     }
