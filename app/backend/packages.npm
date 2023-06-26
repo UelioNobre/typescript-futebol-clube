@@ -2,3 +2,4 @@ joi
 @types/joi
 chai-as-promised
 @types/chai-as-promised
+express-async-errors
