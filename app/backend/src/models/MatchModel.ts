@@ -38,7 +38,7 @@ export default class MatchModel {
           attributes: ['teamName'],
         }],
     });
-    console.log({inProgress});
+
     return matches;
   }
 }
