@@ -6,23 +6,59 @@ import {
   CreationOptional,
 } from 'sequelize';
 import db from '.';
+import SequelizeTeams from './SequelizeTeams';
 // import OtherModel from './OtherModel';
 
-class Teams extends Model<InferAttributes<Teams>,
-InferCreationAttributes<Teams>> {
+class SequelizeMatches extends Model<InferAttributes<SequelizeMatches>,
+InferCreationAttributes<SequelizeMatches>> {
   declare id: CreationOptional<number>;
+  declare homeTeamId: number;
+  declare homeTeamGoals: number;
+  declare awayTeamId: number;
+  declare awayTeamGoals: number;
+  declare inProgress: boolean;
 }
 
-Teams.init({
+SequelizeMatches.init({
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
+  homeTeamId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
+  },
+  homeTeamGoals: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  awayTeamId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
+  },
+  awayTeamGoals: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  inProgress: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
 }, {
+  underscored: true,
   sequelize: db,
-  modelName: 'teams',
+  modelName: 'matches',
   timestamps: false,
 });
 
@@ -37,4 +73,10 @@ Teams.init({
 // Example.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
 // Example.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default Teams;
+SequelizeMatches.belongsTo(SequelizeTeams, { foreignKey: 'homeTeamId', as: 'homeTeam' });
+SequelizeMatches.belongsTo(SequelizeTeams, { foreignKey: 'awayTeamId', as: 'awayTeam' });
+
+SequelizeTeams.hasMany(SequelizeMatches, { foreignKey: 'homeTeamId', as: 'homeMatch' });
+SequelizeTeams.hasMany(SequelizeMatches, { foreignKey: 'awayTeamId', as: 'awayMatch' });
+
+export default SequelizeMatches;
