@@ -20,4 +20,25 @@ export default class MatchModel {
     });
     return matches;
   }
+
+  public async findByProgress(inProgress: boolean) {
+    const matches = await this.model.findAll({
+      where: {
+        inProgress,
+      },
+      include: [
+        {
+          model: SequelizeTeams,
+          as: 'homeTeam',
+          attributes: ['teamName'],
+        },
+        {
+          model: SequelizeTeams,
+          as: 'awayTeam',
+          attributes: ['teamName'],
+        }],
+    });
+    console.log({inProgress});
+    return matches;
+  }
 }
