@@ -1,6 +1,7 @@
 import { compare } from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import IUser from '../Interfaces/IUser';
+import AuthErrorException from '../errors/auth.error';
 
 export default class TokenService {
   private static jwtSecret = process.env.JWT_SECRET || 'jwt_secret';
@@ -20,6 +21,10 @@ export default class TokenService {
   }
 
   public static decoded(tokenRaw: string) {
-    return jwt.decode(tokenRaw) as IUser;
+    try {
+      return jwt.verify(tokenRaw, this.jwtSecret) as IUser;
+    } catch (error) {
+      throw new AuthErrorException('Token must be a valid token');
+    }
   }
 }
