@@ -1,5 +1,6 @@
 import SequelizeTeams from '../database/models/SequelizeTeams';
 import SequelizeMatches from '../database/models/SequelizeMatches';
+import NotFoundErrorException from '../errors/notFound.error';
 
 export default class MatchModel {
   private model = SequelizeMatches;
@@ -40,5 +41,17 @@ export default class MatchModel {
     });
 
     return matches;
+  }
+
+  public async finish(id: number) {
+    const match = await this.model.findByPk(id);
+
+    if (!match) {
+      throw new NotFoundErrorException(`Match with ID ${id} not found`);
+    }
+
+    match.inProgress = false;
+
+    await match.save();
   }
 }
