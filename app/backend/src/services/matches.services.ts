@@ -6,4 +6,9 @@ export default class MatchesServices {
     const matches = await matchModel.findByProgress(progress);
     return matches;
   }
+
+  public static async finishMatch(id: number): Promise<void> {
+    const matchModel = new MatchModel();
+    await matchModel.finish(id);
+  }
 }
