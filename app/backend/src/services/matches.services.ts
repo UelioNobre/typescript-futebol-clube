@@ -11,4 +11,9 @@ export default class MatchesServices {
     const matchModel = new MatchModel();
     await matchModel.finish(id);
   }
+
+  public static async updateMatch(id: number, homeGoals: number, awayGoals: number) {
+    const matchModel = new MatchModel();
+    await matchModel.updateMatch(id, homeGoals, awayGoals);
+  }
 }
