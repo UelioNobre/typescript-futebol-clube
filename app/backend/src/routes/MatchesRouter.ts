@@ -8,14 +8,14 @@ MatchesRouter.get('/', MatchesController.listAll);
 MatchesRouter.get('/', MatchesController.listProgress);
 
 MatchesRouter.patch(
-  '/:id/finish',
+  '/:id',
   AuthMiddleware.tokenRequired,
   AuthMiddleware.tokenHasBeenValid,
-  MatchesController.finishMatch,
+  MatchesController.updateMatch,
 );
 
 MatchesRouter.patch(
-  '/:id',
+  '/:id/finish',
   AuthMiddleware.tokenRequired,
   AuthMiddleware.tokenHasBeenValid,
   MatchesController.finishMatch,
