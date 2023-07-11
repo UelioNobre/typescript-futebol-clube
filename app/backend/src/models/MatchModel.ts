@@ -70,10 +70,6 @@ export default class MatchModel {
       throw new NotFoundErrorException('There is no match with such id!');
     }
 
-    // if (!match.inProgress) {
-    //   throw new ValidationError('Match is already finished');
-    // }
-
     match.homeTeamGoals = homeGoals;
     match.awayTeamGoals = awayGoals;
 
