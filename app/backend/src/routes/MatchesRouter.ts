@@ -14,4 +14,11 @@ MatchesRouter.patch(
   MatchesController.finishMatch,
 );
 
+MatchesRouter.patch(
+  '/:id',
+  AuthMiddleware.tokenRequired,
+  AuthMiddleware.tokenHasBeenValid,
+  MatchesController.finishMatch,
+);
+
 export default MatchesRouter;
