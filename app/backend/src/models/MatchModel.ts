@@ -1,6 +1,7 @@
 import SequelizeTeams from '../database/models/SequelizeTeams';
 import SequelizeMatches from '../database/models/SequelizeMatches';
 import NotFoundErrorException from '../errors/notFound.error';
+import { MatchCreationalAtributes } from '../Interfaces/IMatches';
 
 export default class MatchModel {
   private model = SequelizeMatches;
@@ -74,5 +75,18 @@ export default class MatchModel {
     match.awayTeamGoals = awayGoals;
 
     await match.save();
+  }
+
+  public async createMatche(matchData: MatchCreationalAtributes) {
+    try {
+      await this.findOne(matchData.homeTeamId);
+      await this.findOne(matchData.awayTeamId);
+    } catch (error) {
+      throw new NotFoundErrorException('There is no team with such id!');
+    }
+
+    const newMatch = await this.model.create(matchData);
+
+    return newMatch;
   }
 }

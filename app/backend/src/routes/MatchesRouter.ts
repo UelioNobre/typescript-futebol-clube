@@ -21,4 +21,11 @@ MatchesRouter.patch(
   MatchesController.finishMatch,
 );
 
+MatchesRouter.post(
+  '/',
+  AuthMiddleware.tokenRequired,
+  AuthMiddleware.tokenHasBeenValid,
+  MatchesController.createMatches,
+);
+
 export default MatchesRouter;
