@@ -43,14 +43,39 @@ export default class MatchModel {
     return matches;
   }
 
-  public async finish(id: number) {
+  public async findOne(id: number) {
     const match = await this.model.findByPk(id);
 
     if (!match) {
       throw new NotFoundErrorException(`Match with ID ${id} not found`);
     }
 
+    return match;
+  }
+
+  public async finish(id: number) {
+    const match = await this.findOne(id);
+
     match.inProgress = false;
+
+    await match.save();
+  }
+
+  public async updateMatch(id: number, homeGoals: number, awayGoals: number) {
+    let match = null;
+
+    try {
+      match = await this.findOne(id);
+    } catch (error) {
+      throw new NotFoundErrorException('There is no match with such id!');
+    }
+
+    // if (!match.inProgress) {
+    //   throw new ValidationError('Match is already finished');
+    // }
+
+    match.homeTeamGoals = homeGoals;
+    match.awayTeamGoals = awayGoals;
 
     await match.save();
   }
