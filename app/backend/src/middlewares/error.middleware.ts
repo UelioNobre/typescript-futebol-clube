@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import LoginErrorException from '../errors/login.error';
 import AuthErrorException from '../errors/auth.error';
 import NotFoundErrorException from '../errors/notFound.error';
+import UnprocessableContentException from '../errors/unprocessable.error';
 
 export default class ErrorMiddleware {
   static handler(error: Error, _req: Request, res: Response, _next: NextFunction) {
@@ -17,6 +18,10 @@ export default class ErrorMiddleware {
 
     if (error instanceof NotFoundErrorException) {
       return res.status(404).json({ message });
+    }
+
+    if (error instanceof UnprocessableContentException) {
+      return res.status(422).json({ message });
     }
 
     return res.status(500).json({ message });

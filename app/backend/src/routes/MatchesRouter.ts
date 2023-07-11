@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import MatchesController from '../controllers/matches.controller';
 import AuthMiddleware from '../middlewares/auth.middleware';
+import MatchesMiddleware from '../middlewares/matches.middleware';
 
 const MatchesRouter = Router();
 
@@ -25,6 +26,8 @@ MatchesRouter.post(
   '/',
   AuthMiddleware.tokenRequired,
   AuthMiddleware.tokenHasBeenValid,
+  MatchesMiddleware.isTheSame,
+  MatchesMiddleware.isTeamExists,
   MatchesController.createMatches,
 );
 
