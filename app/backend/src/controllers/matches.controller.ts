@@ -16,7 +16,7 @@ export default class MatchesController {
 
   public static async listProgress(req: Request, res: Response) {
     const { inProgress } = req.query;
-    const progress = inProgress === 'true' || false;
+    const progress = inProgress === 'true';
 
     const matches = await MatchesServices.listByProgress(progress);
 
