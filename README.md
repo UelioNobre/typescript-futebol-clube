@@ -1,13 +1,9 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# typescript-futebol-clube
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+No contexto do seu time de desenvolvimento, você desempenhou um papel fundamental na criação de uma API robusta e na integração de aplicações por meio do docker-compose, como parte do projeto de TFC (Trybe Futebol Clube). Adotando a metodologia TDD (Desenvolvimento Orientado por Testes), você conduziu o desenvolvimento da API, garantindo sua qualidade e confiabilidade desde o início. A integração das aplicações foi realizada de forma eficiente, permitindo que elas operassem em conjunto, consumindo dados de um banco de dados compartilhado.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+No escopo deste projeto, o foco se direcionou à construção de um back-end dockerizado, baseado em modelagem de dados utilizando o Sequelize. Ao seguir regras de negócio predefinidas no projeto, você se empenhou em criar um back-end que se alinhasse às necessidades funcionais. A API desenvolvida se tornou um elo essencial entre o front-end já existente no projeto, proporcionando a comunicação fluida entre os dois componentes. A autenticação foi incorporada, exigindo um token para adicionar partidas e garantindo que apenas usuários autenticados pudessem efetuar alterações.
+
+Uma parte fundamental do desenvolvimento foi a implementação de um relacionamento entre as tabelas "teams" (equipes) e "matches" (partidas), possibilitando atualizações precisas das partidas com base nas informações das equipes. As regras de negócio foram cuidadosamente incorporadas ao back-end, assegurando que a tabela disponível no front-end fosse adequadamente populada. No geral, o projeto ressaltou sua habilidade em criar uma API resiliente, integrar aplicações através de containers e aplicar regras de negócio sólidas para proporcionar uma experiência completa e coesa aos usuários do sistema.
+
+Feito no Curso de Desenvolvimento de Software na Trybe 💚
